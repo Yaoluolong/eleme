@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from '@/layout'
 
 Vue.use(Router)
 
+/* Layout */
+import Layout from '@/layout'
 
 export const constantRoutes = [
   {
@@ -35,14 +36,32 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/menu',
     children: [
       {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        path: 'menu',
+        component: () => import('@/views/menu/index'),
+        name: 'menu',
+        meta: { title: '菜单', affix: true }
       }
     ]
   }
 ]
+
+export const asyncRoutes = [
+  { path: '*', redirect: '/404', hidden: true }
+]
+
+const createRouter = () => new Router({
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes
+})
+
+const router = createRouter()
+
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher
+}
+
+export default router
