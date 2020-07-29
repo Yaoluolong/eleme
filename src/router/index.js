@@ -3,13 +3,9 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-/* Layout */
-import Layout from '@/layout'
-
 export const constantRoutes = [
   {
     path: '/redirect',
-    component: Layout,
     hidden: true,
     children: [
       {
@@ -24,6 +20,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/registration',
+    component: () => import('@/views/registration/index'),
+    hidden: true
+  },
+  {
     path: '/auth-redirect',
     component: () => import('@/views/login/auth-redirect'),
     hidden: true
@@ -35,7 +36,6 @@ export const constantRoutes = [
   },
   {
     path: '/',
-    component: Layout,
     redirect: '/menu',
     children: [
       {

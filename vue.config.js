@@ -1,4 +1,7 @@
 module.exports = {
+  outputDir: 'dist',
+  assetsDir: 'static', // 静态资源目录 (js, css, img, fonts)
+
   devServer: {
     port: 8888 // 端口
   },
