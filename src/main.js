@@ -7,6 +7,7 @@ import router from './router'// 引入vue-router
 // 引入vant-ui
 import Vant from 'vant'
 import 'vant/lib/index.css'
+import 'vant/lib/icon/local.css'
 
 import './permission' // 权限控制
 import './icons' // icon

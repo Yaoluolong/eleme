@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
+import Layout from '@/layout'
+
 export const constantRoutes = [
   {
     path: '/redirect',
@@ -36,6 +38,7 @@ export const constantRoutes = [
   },
   {
     path: '/',
+    component: Layout,
     redirect: '/menu',
     children: [
       {

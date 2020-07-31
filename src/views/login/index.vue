@@ -68,18 +68,19 @@ export default {
     // 提交表单
     onSubmit() {
       this.isLoading = true
-      this.$store
-        .dispatch('user/login', this.form)
-        .then(() => {
-          this.$router.push({
-            path: this.redirect || '/',
-            query: this.otherQuery
-          })
-          this.isLoading = false
-        })
-        .catch(() => {
-          this.isLoading = false
-        })
+      this.$router.push('menu')
+      // this.$store
+      //   .dispatch('user/login', this.form)
+      //   .then(() => {
+      //     this.$router.push({
+      //       path: this.redirect || '/',
+      //       query: this.otherQuery
+      //     })
+      //     this.isLoading = false
+      //   })
+      //   .catch(() => {
+      //     this.isLoading = false
+      //   })
     },
     // 其他url参数转换方法
     getOtherQuery(query) {
@@ -95,8 +96,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/colors';
-
 .login-container {
   text-align: center;
   margin: 20px;
