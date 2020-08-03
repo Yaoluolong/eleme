@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar />
+    <!-- <top-bar  /> -->
     <app-main />
     <tab-bar />
   </div>
@@ -21,7 +21,11 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  computed: {
+    getCurrentRoute() {
+      return this.$route.path
+    }
+  }
 }
 </script>
 

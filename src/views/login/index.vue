@@ -96,6 +96,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/colors';
+
 .login-container {
   text-align: center;
   margin: 20px;

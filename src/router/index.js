@@ -48,6 +48,19 @@ export const constantRoutes = [
         meta: { title: '菜单', affix: true }
       }
     ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/cart',
+    children: [
+      {
+        path: 'cart',
+        component: () => import('@/views/cart/index'),
+        name: 'cart',
+        meta: { title: '购物车', affix: true }
+      }
+    ]
   }
 ]
 
