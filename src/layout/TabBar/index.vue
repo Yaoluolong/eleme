@@ -17,8 +17,12 @@ export default {
       active: 0
     }
   },
-  watch: {
-    active() {
+  mounted() {
+    this.setActiveTab()
+  },
+  methods: {
+    // 设置初始tab
+    setActiveTab() {
       const path = this.$route.path
       let active = 0
       switch (path) {
@@ -34,10 +38,9 @@ export default {
         default:
           break
       }
-      return active
-    }
-  },
-  methods: {
+      this.active = active
+    },
+    // tab改变事件
     onChange(index) {
       switch (index) {
         case 0:

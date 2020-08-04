@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <top-bar  /> -->
+    <top-bar v-if="topVisible" />
     <app-main />
-    <tab-bar />
+    <tab-bar v-if="tabVisible" />
   </div>
 </template>
 
@@ -19,11 +19,27 @@ export default {
     TopBar
   },
   data() {
-    return {}
+    return {
+      tabRoutes: ['/menu', '/cart', '/mine'],
+      topRoutes: []
+    }
   },
   computed: {
-    getCurrentRoute() {
-      return this.$route.path
+    tabVisible() {
+      const route = this.$route.path
+      if (this.tabRoutes.includes(route)) {
+        return true
+      } else {
+        return false
+      }
+    },
+    topVisible() {
+      const route = this.$route.path
+      if (this.topRoutes.includes(route)) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }

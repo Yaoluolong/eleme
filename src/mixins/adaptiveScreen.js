@@ -1,7 +1,10 @@
 export const adaptiveScreen = {
   computed: {
     getScreenHeight() {
-      return window.innerHeight
+      return window.screen.availHeight
+    },
+    getScreenWeight() {
+      return window.screen.availWidth
     }
   }
 }
