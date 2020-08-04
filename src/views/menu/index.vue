@@ -77,7 +77,7 @@ export default {
 .menu {
   .menu-siderbar,
   .menu-itemlist {
-    overflow-y: auto;
+    overflow: auto;
   }
 }
 
