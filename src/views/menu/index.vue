@@ -9,7 +9,7 @@
     />
     <div class="menu-siderbar" :style="siderbar">
       <van-sidebar v-model="activeKey">
-        <van-sidebar-item v-for="(item,index) in items" :key="index" :title="item.sortName" />
+        <van-sidebar-item v-for="(item,index) in sidebarItems" :key="index" :title="item.sortName" />
       </van-sidebar>
     </div>
     <div class="menu-itemList" :style="itemList">
@@ -34,7 +34,7 @@ export default {
       activeKey: 0, // 激活的侧边栏key
 
       /* v-for */
-      items: [// 侧边栏item
+      sidebarItems: [// 侧边栏item
         {
           sortId: 1,
           sortName: '套餐'
@@ -43,6 +43,9 @@ export default {
           sortId: 2,
           sortName: '小吃'
         }
+      ],
+      menuItems: [
+        {}
       ],
 
       /* 样式 */
