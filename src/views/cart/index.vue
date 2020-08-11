@@ -24,6 +24,7 @@
 <script>
 import { adaptiveScreen } from '@/mixins/adaptiveScreen'
 import ItemCard from '@/components/ItemCard'
+import { Dialog } from 'vant'
 
 export default {
   name: 'Cart',
@@ -48,7 +49,23 @@ export default {
   methods: {
     // 清空购物车
     clearCart() {
-
+      Dialog.confirm({
+        title: '提示',
+        message: '确认清空购物车?',
+        beforeClose: (action, done) => {
+          if (action === 'confirm') {
+            this.$store.dispatch('cart/removeAll')
+              .then(() => {
+                done()
+              })
+              .catch(() => {
+                done()
+              })
+          } else {
+            done()
+          }
+        }
+      })
     },
     // 跳转至结算页面
     toSettlement() {

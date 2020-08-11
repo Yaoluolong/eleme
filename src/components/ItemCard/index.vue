@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 
 export default {
   name: 'ItemCard',
@@ -78,16 +77,23 @@ export default {
     }
   },
   methods: {
-    // 获取store.cart的方法
-    ...mapMutations('cart', [
-      'addItem',
-      'removeItem'
-    ]),
     reduceNumber() {
-      this.removeItem(this.item)
+      this.$store.dispatch('cart/removeItem', this.item)
+        .then(() => {
+
+        })
+        .catch(() => {
+
+        })
     },
     addNumber() {
-      this.addItem(this.item)
+      this.$store.dispatch('cart/addItem', this.item)
+        .then(() => {
+
+        })
+        .catch(() => {
+
+        })
     }
   }
 }
