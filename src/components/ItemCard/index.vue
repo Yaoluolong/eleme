@@ -1,5 +1,5 @@
 <template>
-  <div class="item-card">
+  <div class="item-card" @click="openDetail">
     <div class="item-card-image">
       <van-image width="100" height="100">
         <template v-slot:loading>
@@ -77,6 +77,11 @@ export default {
     }
   },
   methods: {
+    openDetail() {
+      this.commodityId = 123
+      console.log(this.commodityId)
+      this.$router.push({ name: 'detail', params: { id: this.commodityId }})
+    },
     reduceNumber() {
       this.$store.dispatch('cart/removeItem', this.item)
         .then(() => {

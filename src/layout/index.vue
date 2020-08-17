@@ -20,13 +20,13 @@ export default {
   },
   data() {
     return {
-      tabRoutes: ['/menu', '/cart', '/mine'],
-      topRoutes: []
+      tabRoutes: ['menu', 'cart', 'mine'],
+      topRoutes: ['detail']
     }
   },
   computed: {
     tabVisible() {
-      const route = this.$route.path
+      const route = this.$route.name
       if (this.tabRoutes.includes(route)) {
         return true
       } else {
@@ -34,7 +34,8 @@ export default {
       }
     },
     topVisible() {
-      const route = this.$route.path
+      console.log(this.$route)
+      const route = this.$route.name
       if (this.topRoutes.includes(route)) {
         return true
       } else {
