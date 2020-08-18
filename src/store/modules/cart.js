@@ -16,10 +16,10 @@ const mutations = {
   setCount(state, count) {
     state.price = count
   },
-  plusCount() {
+  plusCount(state) {
     state.count++
   },
-  minusCount() {
+  minusCount(state) {
     state.count--
   }
 }
