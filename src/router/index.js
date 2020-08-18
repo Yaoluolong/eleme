@@ -45,10 +45,20 @@ export const constantRoutes = [
         path: 'menu',
         component: () => import('@/views/menu/index'),
         name: 'menu',
-        meta: { title: '菜单', affix: true },
-        children: [
-
-        ]
+        meta: { title: '菜单', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/order',
+    children: [
+      {
+        path: 'order',
+        component: () => import('@/views/order/index'),
+        name: 'order',
+        meta: { title: '订单', affix: true }
       }
     ]
   },
@@ -61,10 +71,7 @@ export const constantRoutes = [
         path: '/detail/:id',
         component: () => import('@/views/detail/index'),
         name: 'detail',
-        meta: { title: '商品详情', affix: true },
-        props: (route) => ({
-          id: route.params.id
-        })
+        meta: { title: '商品详情', affix: true }
       }
     ]
   },

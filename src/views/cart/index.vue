@@ -88,6 +88,8 @@ export default {
     font-size: 16px;
     font-weight: 600;
     text-align: center;
+    position: fixed;
+    top: 0;
   }
   footer {
     position: fixed;

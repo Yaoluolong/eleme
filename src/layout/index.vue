@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-bar v-if="topVisible" />
+    <top-bar v-if="topVisible" :title="routeName" />
     <app-main />
     <tab-bar v-if="tabVisible" />
   </div>
@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      tabRoutes: ['menu', 'cart', 'mine'],
+      tabRoutes: ['menu', 'cart', 'order'],
       topRoutes: ['detail']
     }
   },
@@ -34,13 +34,15 @@ export default {
       }
     },
     topVisible() {
-      console.log(this.$route)
       const route = this.$route.name
       if (this.topRoutes.includes(route)) {
         return true
       } else {
         return false
       }
+    },
+    routeName() {
+      return this.$route.name
     }
   }
 }

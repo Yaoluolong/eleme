@@ -87,7 +87,7 @@ export default {
 /deep/.van-sidebar-item--select {
   font-weight: 600;
 }
-/deep/ .van-sidebar-item--select::before {
+/deep/.van-sidebar-item--select::before {
   width: 5px;
   height: 61px;
   background-color: $theme-color;

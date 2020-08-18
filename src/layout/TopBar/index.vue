@@ -1,33 +1,48 @@
 <template>
   <div>
-    <van-nav-bar
-      title="标题"
-      left-text="返回"
-      right-text="按钮"
-      left-arrow
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
-    />
+    <van-nav-bar :title="titleLabel" left-arrow @click-left="onClickLeft" />
   </div>
 </template>
 
 <script>
 export default {
-  name: '',
-  components: {},
+  name: 'TopBar',
+  props: {
+    title: {
+      type: String,
+      default: '标题'
+    }
+  },
   data() {
     return {}
   },
+  computed: {
+    titleLabel() {
+      return this.title === 'detail' ? '商品详情' : '确认订单'
+    }
+  },
   methods: {
     onClickLeft() {
-      this.$toast('返回')
-    },
-    onClickRight() {
-      this.$toast('按钮')
+      this.$router.back()
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/colors';
+
+/deep/.van-nav-bar {
+  background-color: $theme-color;
+  .van-icon {
+    color: #fff;
+  }
+  .van-nav-bar__text {
+    color: #fff;
+  }
+  .van-nav-bar__title {
+    color: #fff;
+    font-size: 18px;
+  }
+}
 </style>
