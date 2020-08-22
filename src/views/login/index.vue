@@ -69,18 +69,18 @@ export default {
     onSubmit() {
       this.isLoading = true
       this.$router.push('menu')
-      // this.$store
-      //   .dispatch('user/login', this.form)
-      //   .then(() => {
-      //     this.$router.push({
-      //       path: this.redirect || '/',
-      //       query: this.otherQuery
-      //     })
-      //     this.isLoading = false
-      //   })
-      //   .catch(() => {
-      //     this.isLoading = false
-      //   })
+      this.$store
+        .dispatch('user/login', this.form)
+        .then(() => {
+          this.$router.push({
+            path: this.redirect || '/',
+            query: this.otherQuery
+          })
+          this.isLoading = false
+        })
+        .catch(() => {
+          this.isLoading = false
+        })
     },
     // 其他url参数转换方法
     getOtherQuery(query) {
