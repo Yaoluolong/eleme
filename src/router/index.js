@@ -87,6 +87,19 @@ export const constantRoutes = [
         meta: { title: '购物车', affix: true }
       }
     ]
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/settlement',
+    children: [
+      {
+        path: 'settlement',
+        component: () => import('@/views/registration/index'),
+        name: 'settlement',
+        meta: { title: '结算', affix: true }
+      }
+    ]
   }
 ]
 

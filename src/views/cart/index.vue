@@ -69,7 +69,9 @@ export default {
     },
     // 跳转至结算页面
     toSettlement() {
-      console.log('跳转至结算页面')
+      // if (this.items.length !== 0) {
+      this.$router.push({ name: 'settlement' })
+      // }
     }
   }
 }
