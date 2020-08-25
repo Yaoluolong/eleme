@@ -15,16 +15,25 @@ const mutations = {
   },
   setCount(state, count) {
     state.price = count
-  },
-  plusCount(state) {
-    state.count++
-  },
-  minusCount(state) {
-    state.count--
   }
 }
 
 const actions = {
+  getCart({ commit }, item) {
+    return new Promise((resolve, reject) => {
+      addItem(item)
+        .then(response => {
+          const { data } = response
+          commit('setList', data.list)
+          commit('setPrice', data.price)
+          commit('setCount', data.count)
+          resolve()
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
   // 添加商品进购物车
   addItem({ commit }, item) {
     return new Promise((resolve, reject) => {
@@ -33,7 +42,7 @@ const actions = {
           const { data } = response
           commit('setList', data.list)
           commit('setPrice', data.price)
-          commit('plusCount')
+          commit('setCount', data.count)
           resolve()
         })
         .catch(error => {
@@ -48,7 +57,7 @@ const actions = {
         const { data } = Response
         commit('setList', data.list)
         commit('setPrice', data.price)
-        commit('minusCount')
+        commit('setCount', data.count)
         resolve()
       }).catch(error => {
         reject(error)
