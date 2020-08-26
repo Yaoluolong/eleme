@@ -1,5 +1,6 @@
 <template>
   <div class="detail">
+    <van-toast id="van-toast" />
     <div class="detail-header">
       <div class="image">
         <van-image width="100%" height="200px">
@@ -35,6 +36,9 @@
 </template>
 
 <script>
+import { getDetail } from '@/api/commodity'
+import { Toast } from 'vant'
+
 export default {
   name: 'Detail',
   data() {
@@ -52,6 +56,13 @@ export default {
     }
   },
   created() {
+    getDetail({ commodityId: this.$route.params.id })
+      .then(response => {
+        this.item = response.data
+      })
+      .catch(error => {
+        Toast.fail('加载失败:' + error)
+      })
   },
   methods: {}
 }

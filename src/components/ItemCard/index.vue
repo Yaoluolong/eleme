@@ -57,7 +57,7 @@ export default {
       type: Object,
       default: () => {
         return {
-          commodityId: null,
+          commodityId: 'null',
           commodityName: null,
           describe: null,
           orderNumber: null,
@@ -78,8 +78,6 @@ export default {
   },
   methods: {
     openDetail() {
-      this.commodityId = 123
-      console.log(this.commodityId)
       this.$router.push({ name: 'detail', params: { id: this.commodityId }})
     },
     reduceNumber() {

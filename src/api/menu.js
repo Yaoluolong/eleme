@@ -1,24 +1,16 @@
 import request from '@/utils/request'
 
-export function addItem(data) {
+export function getMenuList(data) {
   return request({
-    url: '/cart/addItem',
+    url: '/menu/list',
     method: 'post',
     data
   })
 }
 
-export function removeItem(data) {
+export function getSortList() {
   return request({
-    url: '/cart/removeItem',
-    method: 'post',
-    data
-  })
-}
-
-export function removeAll() {
-  return request({
-    url: '/cart/removeAll',
-    method: 'post'
+    url: '/sort/list',
+    method: 'get'
   })
 }

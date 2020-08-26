@@ -1,5 +1,6 @@
 <template>
   <div class="menu">
+    <van-toast id="van-toast" />
     <van-search
       v-model="searchValue"
       shape="round"
@@ -9,11 +10,16 @@
     />
     <div class="menu-siderbar" :style="siderbar">
       <van-sidebar v-model="activeKey">
-        <van-sidebar-item v-for="(item,index) in sidebarItems" :key="index" :title="item.sortName" />
+        <van-sidebar-item
+          v-for="(item,index) in sidebarItems"
+          :key="index"
+          :title="item.sortName"
+          @click="onSwitch(item)"
+        />
       </van-sidebar>
     </div>
     <div class="menu-itemList" :style="itemList">
-      <item-card />
+      <item-card v-for="(item,index) in menuItems" :key="index" :title="item.sortName" />
     </div>
     <div style="clear:both" />
   </div>
@@ -21,7 +27,9 @@
 
 <script>
 import { adaptiveScreen } from '@/mixins/adaptiveScreen'
+import { getMenuList, getSortList } from '@/api/menu'
 import ItemCard from '@/components/ItemCard'
+import { Toast } from 'vant'
 
 export default {
   name: 'Menu',
@@ -45,7 +53,14 @@ export default {
         }
       ],
       menuItems: [
-        {}
+        {
+          commodityId: 'null',
+          commodityName: null,
+          describe: null,
+          orderNumber: null,
+          commodityMoney: null,
+          number: 0
+        }
       ],
 
       /* 样式 */
@@ -65,11 +80,31 @@ export default {
     this.siderbar.height = this.getScreenHeight - 104 + 'px'
     this.itemList.width = this.getScreenWeight - 85 + 'px'
     this.itemList.height = this.getScreenHeight - 104 + 'px'
+
+    getSortList()
+      .then(response => {
+        const { data } = response
+        this.sidebarItems = data.list
+      })
+      .catch(error => {
+        Toast.fail('加载失败:' + error)
+      })
   },
   methods: {
     clickSearch() {
       console.log(this.getScreenHeight)
       console.log(this.getScreenWeight)
+    },
+    onSwitch(item) {
+      const { sortId } = item
+      getMenuList({ sortId })
+        .then(response => {
+          const { data } = response
+          this.menuItems = data.list
+        })
+        .catch(error => {
+          Toast.fail('加载失败,' + error)
+        })
     }
   }
 }
