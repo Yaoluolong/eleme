@@ -11,3 +11,14 @@ export function getOrderList(tab) {
     }
   })
 }
+
+export function cancelOrder(reason) {
+  return request({
+    url: '/order/cancel',
+    method: 'post',
+    data: {
+      userId: getters.id,
+      reason
+    }
+  })
+}

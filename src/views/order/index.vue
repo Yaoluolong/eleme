@@ -10,7 +10,7 @@
       >
         <van-tab title="全部">
           <div class="wrap">
-            <order-card v-for="(item,index) in list" :key="index" :item="item" />
+            <order-card />
           </div>
         </van-tab>
         <van-tab title="待完成">
