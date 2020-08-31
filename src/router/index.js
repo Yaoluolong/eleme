@@ -95,7 +95,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'settlement',
-        component: () => import('@/views/registration/index'),
+        component: () => import('@/views/settlement/index'),
         name: 'settlement',
         meta: { title: '结算', affix: true }
       }

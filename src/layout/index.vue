@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       tabRoutes: ['menu', 'cart', 'order'],
-      topRoutes: ['detail']
+      topRoutes: ['detail', 'settlement']
     }
   },
   computed: {
