@@ -66,7 +66,7 @@ service.interceptors.response.use(
       //   type: 'error',
       //   duration: 5 * 1000
       // })
-      alert('token失效')
+      alert(msg || 'token失效')
     }
     return Promise.reject()
   }

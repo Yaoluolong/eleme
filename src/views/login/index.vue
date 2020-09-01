@@ -6,7 +6,7 @@
     <div class="login-form">
       <van-form @submit="onSubmit">
         <van-field
-          v-model="form.username"
+          v-model="form.userId"
           name="手机号"
           label="手机号"
           placeholder="请输入手机号"
@@ -39,7 +39,7 @@ export default {
     return {
       // 登录表单
       form: {
-        username: '',
+        userId: '',
         password: ''
       },
       isLoading: false, // 登录按钮加载状态
@@ -68,7 +68,7 @@ export default {
     // 提交表单
     onSubmit() {
       this.isLoading = true
-      this.$router.push('menu')
+      // this.$router.push('menu')
       this.$store
         .dispatch('user/login', this.form)
         .then(() => {
