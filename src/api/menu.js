@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getMenuList(data) {
   return request({
-    url: '/menu/list',
+    url: '/commodity/eleme/menu/list',
     method: 'post',
     data
   })
@@ -10,7 +10,7 @@ export function getMenuList(data) {
 
 export function getSortList() {
   return request({
-    url: '/sort/list',
+    url: '/eleme/sort/list',
     method: 'get'
   })
 }
