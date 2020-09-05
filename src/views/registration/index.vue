@@ -42,6 +42,9 @@
 </template>
 
 <script>
+import { registration } from '@/api/user'
+import { Toast } from 'vant'
+
 export default {
   name: 'Registration',
   data() {
@@ -62,7 +65,13 @@ export default {
       this.$router.push('login')
     },
     onSubmit() {
-
+      registration(this.form)
+        .then(response => {
+          Toast.success('注册成功')
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }

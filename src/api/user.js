@@ -8,3 +8,11 @@ export function login(data) {
   })
 }
 
+export function registration(data) {
+  return request({
+    url: '/eleme/registration',
+    method: 'post',
+    data
+  })
+}
+
