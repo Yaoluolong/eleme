@@ -9,7 +9,7 @@
         :rules="[{ required: true, message: '请填写手机号' }]"
       />
       <van-field
-        v-model="form.username"
+        v-model="form.userName"
         name="姓名"
         label="姓名"
         placeholder="请输入姓名"
@@ -24,7 +24,7 @@
         :rules="[{ required: true, message: '请填写密码' }]"
       />
       <van-field
-        v-model="form.password"
+        v-model="form.password2"
         type="password"
         name="重复密码"
         label="重复密码"
@@ -52,7 +52,7 @@ export default {
       // 登录表单
       form: {
         userId: '',
-        username: '',
+        userName: '',
         password: '',
         password2: ''
       },

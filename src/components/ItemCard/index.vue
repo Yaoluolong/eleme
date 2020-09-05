@@ -57,7 +57,7 @@ export default {
       type: Object,
       default: () => {
         return {
-          commodityId: 'null',
+          commodityId: null,
           commodityName: null,
           describe: null,
           orderNumber: null,

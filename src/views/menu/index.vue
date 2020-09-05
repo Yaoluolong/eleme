@@ -19,7 +19,7 @@
       </van-sidebar>
     </div>
     <div class="menu-itemList" :style="itemList">
-      <item-card v-for="(item,index) in menuItems" :key="index" :title="item.sortName" />
+      <item-card v-for="(item,index) in menuItems" :key="index" :item="item" :title="item.sortName" />
     </div>
     <div style="clear:both" />
   </div>
