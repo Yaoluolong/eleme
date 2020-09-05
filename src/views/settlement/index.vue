@@ -3,21 +3,23 @@
     <div class="order">
       <div class="addressDiv">
         <van-card class="address">
-          <template #title>
-            <div class="addTitle">
-              <div class="addleft">中国福建省福州市晋安区斗门邮政12楼</div>
-            </div>
-          </template>
-          <template #desc>
-            <div class="desc">林先生</div>
-            <div class="desc">13356565566</div>
-          </template>
-          <template #footer>
-            <div class="addFoot">
-              <div>立即送出</div>
-              <div class="addTime">约{{ arrivalTime }}送达></div>
-            </div>
-          </template>
+          <van-form @submit="onSubmit">
+            <template #title>
+              <div class="addTitle">
+                <div class="addleft">中国福建省福州市晋安区斗门邮政12楼</div>
+              </div>
+            </template>
+            <template #desc>
+              <div class="desc">林先生</div>
+              <div class="desc">13356565566</div>
+            </template>
+            <template #footer>
+              <div class="addFoot">
+                <div>立即送出</div>
+                <div class="addTime">约{{ arrivalTime }}送达></div>
+              </div>
+            </template>
+          </van-form>
         </van-card>
       </div>
       <div class="addressDiv">
