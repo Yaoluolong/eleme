@@ -2,14 +2,14 @@
   <div class="register-form">
     <van-form @submit="onSubmit">
       <van-field
-        v-model="form.username"
+        v-model="form.userId"
         name="手机号"
         label="手机号"
         placeholder="请输入手机号"
         :rules="[{ required: true, message: '请填写手机号' }]"
       />
       <van-field
-        v-model="form.name"
+        v-model="form.username"
         name="姓名"
         label="姓名"
         placeholder="请输入姓名"
@@ -51,8 +51,8 @@ export default {
     return {
       // 登录表单
       form: {
+        userId: '',
         username: '',
-        name: '',
         password: '',
         password2: ''
       },
