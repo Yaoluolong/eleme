@@ -3,7 +3,7 @@ import getters from '@/store/getters'
 
 export function getOrderList(tab) {
   return request({
-    url: 'commodity/eleme/menu/ list',
+    url: '/eleme/order/list',
     method: 'post',
     data: {
       userId: getters.id,
@@ -14,7 +14,7 @@ export function getOrderList(tab) {
 
 export function cancelOrder(reason) {
   return request({
-    url: '/order/cancel',
+    url: '/eleme/order/cancel',
     method: 'post',
     data: {
       userId: getters.id,
