@@ -85,6 +85,7 @@ export default {
       .then(response => {
         const { data } = response
         this.sidebarItems = data.list
+        this.onSwitch(data.list[0])
       })
       .catch(error => {
         Toast.fail('加载失败:' + error)

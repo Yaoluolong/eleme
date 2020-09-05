@@ -65,13 +65,17 @@ export default {
       this.$router.push('login')
     },
     onSubmit() {
-      registration(this.form)
-        .then(response => {
-          Toast.success('注册成功')
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      if (this.form.password === this.form.password2) {
+        registration(this.form)
+          .then(response => {
+            Toast.success('注册成功')
+          })
+          .catch(error => {
+            Toast.fail('注册失败:' + error)
+          })
+      } else {
+        Toast.fail('密码输入不一致')
+      }
     }
   }
 }
