@@ -44,6 +44,9 @@ const actions = {
       }).catch(error => {
         reject(error)
       })
+      // commit('SET_TOKEN', 'data.token')
+      // setToken('data.token')
+      // resolve()
     })
   },
 
