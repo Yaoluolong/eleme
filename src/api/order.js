@@ -1,13 +1,13 @@
 import request from '@/utils/request'
-import getters from '@/store/getters'
+import store from '@/store/index'
 
 export function getOrderList(status) {
-  console.log(getters)
+  console.log(store)
   return request({
     url: '/ident/eleme/list',
     method: 'post',
     data: {
-      userId: getters.id,
+      userId: store.getters.id,
       status
     }
   })
@@ -18,7 +18,7 @@ export function cancelOrder(reason) {
     url: '/eleme/order/cancel',
     method: 'post',
     data: {
-      userId: getters.id,
+      userId: store.getters.id,
       reason
     }
   })
