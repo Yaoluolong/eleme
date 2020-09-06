@@ -58,7 +58,11 @@ export default {
       this.search()
     },
     search() {
-      getOrderList(this.active)
+      let status
+      if (this.active !== 0) {
+        status = this.active - 1
+      }
+      getOrderList(status === 0 ? null : status)
         .then(response => {
           const { data } = response
           this.list = data.list
