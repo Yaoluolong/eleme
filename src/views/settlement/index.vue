@@ -1,25 +1,47 @@
 <template>
   <div>
+    <van-dialog v-model="show" title="标题" show-cancel-button>
+      <van-form @submit="onSubmit">
+        <van-field
+          v-model="form.userId"
+          name="密码"
+          label="密码"
+          placeholder="密码"
+          :rules="[{ required: true, message: '请填写密码' }]"
+        />
+        <van-field
+          v-model="form.address"
+          name="用户名"
+          label="用户名"
+          placeholder="用户名"
+          :rules="[{ required: true, message: '请填写用户名' }]"
+        />
+      </van-form>
+    </van-dialog>
     <div class="order">
       <div class="addressDiv">
         <van-card class="address">
-          <van-form @submit="onSubmit">
-            <template #title>
-              <div class="addTitle">
-                <div class="addleft">中国福建省福州市晋安区斗门邮政12楼</div>
-              </div>
-            </template>
-            <template #desc>
-              <div class="desc">林先生</div>
-              <div class="desc">13356565566</div>
-            </template>
-            <template #footer>
-              <div class="addFoot">
+
+          <template #title>
+            <div class="addTitle">
+              <div class="addleft">中国福建省福州市晋安区斗门邮政12楼</div>
+            </div>
+          </template>
+          <template #desc>
+            <div class="desc">林先生</div>
+            <div class="desc">13356565566</div>
+          </template>
+          <template #footer>
+            <div class="addFoot">
+              <div>
                 <div>立即送出</div>
-                <div class="addTime">约{{ arrivalTime }}送达></div>
+                <div>约{{ arrivalTime }}送达</div>
               </div>
-            </template>
-          </van-form>
+              <div class="button">
+                <van-button plain type="primary" hairline size="small" @click="onEdit">修改</van-button>
+              </div>
+            </div>
+          </template>
         </van-card>
       </div>
       <div class="addressDiv">
@@ -52,7 +74,11 @@ export default {
   components: {},
   data() {
     return {
-
+      show: false,
+      form: {
+        address: '',
+        userId: ''
+      }
     }
   },
   computed: {
@@ -67,6 +93,10 @@ export default {
   methods: {
     onSubmit() {
       console.log('提交订单')
+    },
+    onEdit() {
+      console.log('123')
+      this.show = true
     }
   }
 }
@@ -107,6 +137,7 @@ export default {
   color: grey;
 }
 .addFoot {
+  text-align: left;
   font-size: 15px;
   display: flex;
   justify-content: space-between;
