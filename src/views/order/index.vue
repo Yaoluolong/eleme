@@ -60,7 +60,7 @@ export default {
       getOrderList(this.active === 0 ? 4 : this.active - 1)
         .then(response => {
           const { data } = response
-          this.list = data.list
+          this.list = data
         })
         .catch(error => {
           Toast.fail('加载失败:' + error)
