@@ -50,7 +50,6 @@ export default {
     }
   },
   created() {
-    console.log(123)
     this.search()
   },
   methods: {
@@ -58,11 +57,7 @@ export default {
       this.search()
     },
     search() {
-      let status
-      if (this.active !== 0) {
-        status = this.active - 1
-      }
-      getOrderList(status === 0 ? null : status)
+      getOrderList(this.active === 0 ? 4 : this.active - 1)
         .then(response => {
           const { data } = response
           this.list = data.list
