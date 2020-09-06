@@ -22,8 +22,10 @@
 </template>
 
 <script>
+import { getCartList } from '@/api/cart'
 import { adaptiveScreen } from '@/mixins/adaptiveScreen'
 import ItemCard from '@/components/ItemCard'
+import { Toast } from 'vant'
 import { Dialog } from 'vant'
 
 export default {
@@ -45,6 +47,16 @@ export default {
     priceAmount() {
       return this.$store.getters.price
     }
+  },
+  created() {
+    getCartList()
+      .then(response => {
+        const { data } = response
+        this.list = data.list
+      })
+      .catch(error => {
+        Toast.fail('加载失败:' + error)
+      })
   },
   methods: {
     // 清空购物车

@@ -3,7 +3,7 @@ import getters from '@/store/getters'
 
 export function getOrderList(status) {
   return request({
-    url: '/eleme/order/list',
+    url: '/ident/eleme/list',
     method: 'post',
     data: {
       userId: getters.id,
