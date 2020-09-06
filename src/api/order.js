@@ -1,13 +1,13 @@
 import request from '@/utils/request'
 import getters from '@/store/getters'
 
-export function getOrderList(tab) {
+export function getOrderList(status) {
   return request({
     url: '/eleme/order/list',
     method: 'post',
     data: {
       userId: getters.id,
-      tab
+      status
     }
   })
 }
