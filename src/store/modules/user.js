@@ -41,7 +41,6 @@ const actions = {
         commit('SET_TOKEN', data.token)
         commit('SET_ID', data.userId)
         setToken(data.token)
-        console.log(state.id)
         resolve()
       }).catch(error => {
         reject(error)

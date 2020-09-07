@@ -77,6 +77,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$route)
     this.siderbar.height = this.getScreenHeight - 104 + 'px'
     this.itemList.width = this.getScreenWeight - 85 + 'px'
     this.itemList.height = this.getScreenHeight - 104 + 'px'

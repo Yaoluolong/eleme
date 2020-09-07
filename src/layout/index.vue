@@ -27,6 +27,7 @@ export default {
   computed: {
     tabVisible() {
       const route = this.$route.name
+      this.$store.dispatch('cart/getCart')
       if (this.tabRoutes.includes(route)) {
         return true
       } else {

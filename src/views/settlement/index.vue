@@ -3,18 +3,25 @@
     <van-dialog v-model="show" title="标题" show-cancel-button>
       <van-form @submit="onSubmit">
         <van-field
-          v-model="form.userId"
-          name="密码"
-          label="密码"
-          placeholder="密码"
-          :rules="[{ required: true, message: '请填写密码' }]"
+          v-model="form.userName"
+          name="姓名"
+          label="姓名"
+          placeholder="姓名"
+          :rules="[{ required: true, message: '请填写姓名' }]"
+        />
+        <van-field
+          v-model="form.phoneNumber"
+          name="手机号"
+          label="手机号"
+          placeholder="手机号"
+          :rules="[{ required: true, message: '请填写手机号' }]"
         />
         <van-field
           v-model="form.address"
-          name="用户名"
-          label="用户名"
-          placeholder="用户名"
-          :rules="[{ required: true, message: '请填写用户名' }]"
+          name="地址"
+          label="地址"
+          placeholder="地址"
+          :rules="[{ required: true, message: '请填写地址' }]"
         />
       </van-form>
     </van-dialog>
@@ -24,12 +31,12 @@
 
           <template #title>
             <div class="addTitle">
-              <div class="addleft">中国福建省福州市晋安区斗门邮政12楼</div>
+              <div class="addleft">{{ form.address||'请填写地址' }}</div>
             </div>
           </template>
           <template #desc>
-            <div class="desc">林先生</div>
-            <div class="desc">13356565566</div>
+            <div class="desc">{{ form.userName||'请填写姓名' }}</div>
+            <div class="desc">{{ form.phoneNumber|| '请填写手机号' }}</div>
           </template>
           <template #footer>
             <div class="addFoot">
@@ -45,25 +52,28 @@
         </van-card>
       </div>
       <div class="addressDiv">
-        <van-card
-          class="orderDetail"
-          num="2"
-          price="2.00"
-          desc="描述信息"
-          title="商品标题"
-          thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
-        >
-          <template>
-            <div class="addTitle">
-              <div class="resName">鲜水果小铺</div>
-            </div>
-          </template>
-        </van-card>
+        <template v-for="item in items">
+          <van-card
+            :key="item.commodityId"
+            class="orderDetail"
+            :num="item.number"
+            :price="item.commodityMoney"
+            :desc="item.describe"
+            :title="item.commodityName"
+            thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
+          >
+            <template>
+              <div class="addTitle">
+                <div class="resName">{{ item.commodityName }}</div>
+              </div>
+            </template>
+          </van-card>
+        </template>
         <div />
       </div>
     </div>
     <div>
-      <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit" />
+      <van-submit-bar :price="getCartCount" button-text="提交订单" @submit="onSubmit" />
     </div>
   </div>
 </template>
@@ -76,8 +86,9 @@ export default {
     return {
       show: false,
       form: {
-        address: '',
-        userId: ''
+        userName: null,
+        phoneNumber: null,
+        address: null
       }
     }
   },
@@ -88,6 +99,12 @@ export default {
       t1.setMinutes(t1.getMinutes() + 30)
       t2.setMinutes(t2.getMinutes() + 60)
       return `${t1.getHours()}:${t1.getMinutes()}-${t2.getHours()}:${t2.getMinutes()}`
+    },
+    getCartList() {
+      return this.$store.getters.list
+    },
+    getCartCount() {
+      return this.$store.getters.count
     }
   },
   methods: {
