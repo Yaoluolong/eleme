@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-dialog v-model="show" title="标题" show-cancel-button>
+    <van-dialog v-model="show" title="标题" :before-close="beforeClose" show-cancel-button>
       <van-form @submit="onSubmit">
         <van-field
           v-model="form.userName"
@@ -28,15 +28,14 @@
     <div class="order">
       <div class="addressDiv">
         <van-card class="address">
-
           <template #title>
             <div class="addTitle">
-              <div class="addleft">{{ form.address||'请填写地址' }}</div>
+              <div class="addleft" v-text="address||'请填写地址'" />
             </div>
           </template>
           <template #desc>
-            <div class="desc">{{ form.userName||'请填写姓名' }}</div>
-            <div class="desc">{{ form.phoneNumber|| '请填写手机号' }}</div>
+            <div class="desc" v-text="userName||'请填写姓名'" />
+            <div class="desc" v-text="phoneNumber||'请填写手机号'" />
           </template>
           <template #footer>
             <div class="addFoot">
@@ -52,7 +51,7 @@
         </van-card>
       </div>
       <div class="addressDiv">
-        <template v-for="item in items">
+        <template v-for="item in getCartList">
           <van-card
             :key="item.commodityId"
             class="orderDetail"
@@ -79,12 +78,18 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
+
+import { settleOrder } from '@/api/order'
 export default {
   name: 'Order',
   components: {},
   data() {
     return {
       show: false,
+      userName: null,
+      phoneNumber: null,
+      address: null,
       form: {
         userName: null,
         phoneNumber: null,
@@ -105,14 +110,53 @@ export default {
     },
     getCartCount() {
       return this.$store.getters.count
+    },
+    getUserId() {
+      return this.$store.getters.id
+    },
+    getUserName() {
+      return this.$store.getters.name
+    },
+    getUserAddress() {
+      return this.$store.getters.address
     }
   },
+  mounted() {
+    this.form.userName = this.getUserName
+    this.form.address = this.getUserAddress
+    this.form.phoneNumber = this.getUserId
+  },
   methods: {
+    // 弹窗关闭前调用方法
+    beforeClose(action, done) {
+      if (action !== 'cancel') {
+        this.$nextTick(() => {
+          this.userName = this.form.userName
+          this.phoneNumber = this.form.phoneNumber
+          this.address = this.form.address
+        })
+        done()
+      } else {
+        done()
+      }
+    },
     onSubmit() {
-      console.log('提交订单')
+      const vaild = this.form.userName === '' || null
+        ? false : this.form.getUserAddress === '' || null
+          ? false : !(this.form.getUserId === '' || null)
+      if (vaild) {
+        settleOrder(this.form)
+          .then(response => {
+            Toast.success('提交成功')
+            setTimeout(() => {
+              this.$router.replace('/order')
+            }, 2000)
+          })
+      } else {
+        Toast.fail('请输入订单信息')
+      }
     },
     onEdit() {
-      console.log('123')
       this.show = true
     }
   }

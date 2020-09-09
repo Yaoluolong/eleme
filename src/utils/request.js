@@ -47,7 +47,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log({ error })
+    console.log(error)
     const { msg, code } = error.response.data
     if (code === -2) {
       // MessageBox.confirm('token已失效，是否重新登录', '确认注销', {
@@ -68,7 +68,7 @@ service.interceptors.response.use(
       // })
       alert(msg || 'token失效')
     }
-    return Promise.reject()
+    return Promise.reject(error)
   }
 )
 

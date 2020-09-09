@@ -44,7 +44,7 @@
 </template>
 
 <script>
-
+import { Notify } from 'vant'
 export default {
   name: 'ItemCard',
   components: {},
@@ -83,19 +83,19 @@ export default {
     reduceNumber() {
       this.$store.dispatch('cart/removeItem', this.item)
         .then(() => {
-
+          Notify({ type: 'success', message: '删除成功' })
         })
         .catch(() => {
-
+          Notify({ type: 'danger', message: '删除成功' })
         })
     },
     addNumber() {
       this.$store.dispatch('cart/addItem', this.item)
         .then(() => {
-
+          Notify({ type: 'success', message: '添加成功' })
         })
         .catch(() => {
-
+          Notify({ type: 'danger', message: '添加成功' })
         })
     }
   }

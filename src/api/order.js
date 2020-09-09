@@ -2,7 +2,6 @@ import request from '@/utils/request'
 import store from '@/store/index'
 
 export function getOrderList(status) {
-  console.log(store)
   return request({
     url: '/ident/eleme/list',
     method: 'post',
@@ -20,6 +19,21 @@ export function cancelOrder(reason) {
     data: {
       userId: store.getters.id,
       reason
+    }
+  })
+}
+
+export function settleOrder(data) {
+  return request({
+    url: '/eleme/order/cancel',
+    method: 'post',
+    data: {
+      userName: data.userName,
+      phoneNumber: data.phoneNumber,
+      address: data.address,
+      count: store.getters.count,
+      price: store.getters.price,
+      list: store.getters.list
     }
   })
 }

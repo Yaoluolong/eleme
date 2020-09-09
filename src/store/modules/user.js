@@ -6,7 +6,7 @@ const state = {
   token: getToken(),
   id: '',
   name: '',
-  avatar: '',
+  address: '',
   introduction: '',
   roles: []
 }
@@ -24,8 +24,8 @@ const mutations = {
   SET_ID: (state, id) => {
     state.id = id
   },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
+  SET_ADDRESS: (state, address) => {
+    state.address = address
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
@@ -40,6 +40,8 @@ const actions = {
         const { data } = response
         commit('SET_TOKEN', data.token)
         commit('SET_ID', data.userId)
+        commit('SET_NAME', data.userNmae)
+        commit('SET_ADDRESS', data.address)
         setToken(data.token)
         resolve()
       }).catch(error => {
