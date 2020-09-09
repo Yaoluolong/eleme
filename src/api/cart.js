@@ -11,23 +11,23 @@ export function getCartList() {
   })
 }
 
-export function addItem() {
+export function addItem(id) {
   return request({
     url: '/eleme/cart/addItem',
     method: 'post',
     data: {
-      id: store.getters.cart,
+      id,
       userId: store.getters.id
     }
   })
 }
 
-export function removeItem() {
+export function removeItem(id) {
   return request({
     url: '/eleme/cart/removeItem',
     method: 'post',
     data: {
-      id: store.getters.cart,
+      id,
       userId: store.getters.id
     }
   })

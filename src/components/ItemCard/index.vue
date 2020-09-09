@@ -81,7 +81,7 @@ export default {
       this.$router.push({ name: 'detail', params: { id: this.commodityId }})
     },
     reduceNumber() {
-      this.$store.dispatch('cart/removeItem')
+      this.$store.dispatch('cart/removeItem', this.item.id)
         .then(() => {
           Notify({ type: 'success', message: '删除成功' })
         })
@@ -90,7 +90,7 @@ export default {
         })
     },
     addNumber() {
-      this.$store.dispatch('cart/addItem')
+      this.$store.dispatch('cart/addItem', this.item.id)
         .then(() => {
           Notify({ type: 'success', message: '添加成功' })
         })

@@ -5,7 +5,6 @@ const getters = {
   // visitedViews: state => state.tagsView.visitedViews,
   // cachedViews: state => state.tagsView.cachedViews,
   list: state => state.cart.list,
-  cart: state => state.cart.id,
   count: state => state.cart.count,
   price: state => state.cart.price,
   token: state => state.user.token,

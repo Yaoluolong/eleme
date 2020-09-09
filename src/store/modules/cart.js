@@ -3,8 +3,7 @@ import { getCartList, addItem, removeItem, removeAll } from '@/api/cart'
 const state = {
   list: [],
   count: 0,
-  price: 0.00,
-  id: 0
+  price: 0.00
 }
 
 const mutations = {
@@ -31,7 +30,6 @@ const actions = {
           commit('setList', data.list)
           commit('setPrice', data.price)
           commit('setCount', data.count)
-          commit('setId', data.id)
           resolve()
         })
         .catch(error => {
@@ -40,9 +38,9 @@ const actions = {
     })
   },
   // 添加商品进购物车
-  addItem({ commit }) {
+  addItem({ commit }, id) {
     return new Promise((resolve, reject) => {
-      addItem()
+      addItem(id)
         .then(response => {
           const { data } = response
           commit('setList', data.list)
@@ -56,9 +54,9 @@ const actions = {
     })
   },
   // 从购物车移除商品
-  removeItem({ commit }) {
+  removeItem({ commit }, id) {
     return new Promise((resolve, reject) => {
-      removeItem().then(response => {
+      removeItem(id).then(response => {
         const { data } = response
         commit('setList', data.list)
         commit('setPrice', data.price)
