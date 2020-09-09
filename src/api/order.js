@@ -25,11 +25,11 @@ export function cancelOrder(reason) {
 
 export function settleOrder(data) {
   return request({
-    url: '/eleme/order/cancel',
+    url: '/ident/eleme/settle',
     method: 'post',
     data: {
+      userId: store.getters.id,
       userName: data.userName,
-      phoneNumber: data.phoneNumber,
       address: data.address,
       count: store.getters.count,
       price: store.getters.price,

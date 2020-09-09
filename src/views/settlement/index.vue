@@ -55,7 +55,7 @@
           <van-card
             :key="item.commodityId"
             class="orderDetail"
-            :num="item.number"
+            :num="item.amount"
             :price="item.commodityMoney"
             :desc="item.describe"
             :title="item.commodityName"
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div>
-      <van-submit-bar :price="getCartCount" button-text="提交订单" @submit="onSubmit" />
+      <van-submit-bar :price="getCartPrice" button-text="提交订单" @submit="onSubmit" />
     </div>
   </div>
 </template>
@@ -108,8 +108,8 @@ export default {
     getCartList() {
       return this.$store.getters.list
     },
-    getCartCount() {
-      return this.$store.getters.count
+    getCartPrice() {
+      return this.$store.getters.price
     },
     getUserId() {
       return this.$store.getters.id
