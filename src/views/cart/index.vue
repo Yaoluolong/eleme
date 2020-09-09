@@ -8,12 +8,12 @@
       <div class="cart-footer-amount">
         <div class="total">
           总计
-          <span>{{ numberAmount }}件</span>
+          <span>{{ price }}件</span>
           商品
         </div>
         <div class="price">
           总价
-          <span>￥{{ priceAmount }}</span>
+          <span>￥{{ count }}</span>
         </div>
       </div>
       <div class="cart-footer-button" @click="toSettlement">去结算</div>
@@ -40,11 +40,11 @@ export default {
       return this.$store.getters.list
     },
     // 购物车的商品总量
-    numberAmount() {
+    count() {
       return this.$store.getters.count
     },
     // 购物车的商品总价
-    priceAmount() {
+    price() {
       return this.$store.getters.price
     }
   },

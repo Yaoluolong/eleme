@@ -62,7 +62,7 @@ export default {
           describe: null,
           orderNumber: null,
           commodityMoney: null,
-          number: 0
+          amount: 0
         }
       }
     }
@@ -73,7 +73,7 @@ export default {
   },
   computed: {
     number() {
-      return this.item.number
+      return this.item.amount
     }
   },
   methods: {
