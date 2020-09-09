@@ -1,6 +1,6 @@
 <template>
-  <div class="item-card" @click="openDetail">
-    <div class="item-card-image">
+  <div class="item-card">
+    <div class="item-card-image" @click="openDetail">
       <van-image width="100" height="100">
         <template v-slot:loading>
           <van-loading type="spinner" size="20" />

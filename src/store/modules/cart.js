@@ -42,7 +42,7 @@ const actions = {
   // 添加商品进购物车
   addItem({ commit }) {
     return new Promise((resolve, reject) => {
-      addItem(state.id)
+      addItem()
         .then(response => {
           const { data } = response
           commit('setList', data.list)
@@ -58,7 +58,7 @@ const actions = {
   // 从购物车移除商品
   removeItem({ commit }) {
     return new Promise((resolve, reject) => {
-      removeItem(state.id).then(response => {
+      removeItem().then(response => {
         const { data } = response
         commit('setList', data.list)
         commit('setPrice', data.price)
