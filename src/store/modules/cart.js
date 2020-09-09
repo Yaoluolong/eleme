@@ -3,7 +3,8 @@ import { getCartList, addItem, removeItem, removeAll } from '@/api/cart'
 const state = {
   list: [],
   count: 0,
-  price: 0.00
+  price: 0.00,
+  id: 0
 }
 
 const mutations = {
@@ -14,7 +15,10 @@ const mutations = {
     state.price = price
   },
   setCount(state, count) {
-    state.price = count
+    state.count = count
+  },
+  setId(state, id) {
+    state.id = id
   }
 }
 
@@ -27,6 +31,7 @@ const actions = {
           commit('setList', data.list)
           commit('setPrice', data.price)
           commit('setCount', data.count)
+          commit('setId', data.id)
           resolve()
         })
         .catch(error => {

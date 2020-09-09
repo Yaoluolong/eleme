@@ -16,7 +16,7 @@ export function addItem(data) {
     url: '/eleme/cart/addItem',
     method: 'post',
     data: {
-      ...data,
+      id: data,
       userId: store.getters.id
     }
   })
@@ -27,7 +27,7 @@ export function removeItem(data) {
     url: '/eleme/cart/removeItem',
     method: 'post',
     data: {
-      ...data,
+      id: data,
       userId: store.getters.id
     }
   })
