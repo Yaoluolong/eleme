@@ -40,9 +40,9 @@ const actions = {
     })
   },
   // 添加商品进购物车
-  addItem({ commit }, item) {
+  addItem({ commit }) {
     return new Promise((resolve, reject) => {
-      addItem(item)
+      addItem(state.id)
         .then(response => {
           const { data } = response
           commit('setList', data.list)
@@ -56,10 +56,10 @@ const actions = {
     })
   },
   // 从购物车移除商品
-  removeItem({ commit }, item) {
+  removeItem({ commit }) {
     return new Promise((resolve, reject) => {
-      removeItem(item).then(response => {
-        const { data } = Response
+      removeItem(state.id).then(response => {
+        const { data } = response
         commit('setList', data.list)
         commit('setPrice', data.price)
         commit('setCount', data.count)

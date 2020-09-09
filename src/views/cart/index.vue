@@ -8,12 +8,12 @@
       <div class="cart-footer-amount">
         <div class="total">
           总计
-          <span>{{ price }}件</span>
+          <span>{{ count }}件</span>
           商品
         </div>
         <div class="price">
           总价
-          <span>￥{{ count }}</span>
+          <span>￥{{ price }}</span>
         </div>
       </div>
       <div class="cart-footer-button" @click="toSettlement">去结算</div>
