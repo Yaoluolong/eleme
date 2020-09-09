@@ -1,4 +1,4 @@
-import { addItem, removeItem, removeAll } from '@/api/cart'
+import { getCartList, addItem, removeItem, removeAll } from '@/api/cart'
 
 const state = {
   list: [],
@@ -21,7 +21,7 @@ const mutations = {
 const actions = {
   getCart({ commit }, item) {
     return new Promise((resolve, reject) => {
-      addItem(item)
+      getCartList(item)
         .then(response => {
           const { data } = response
           commit('setList', data.list)

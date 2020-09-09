@@ -1,10 +1,13 @@
 import request from '@/utils/request'
+import store from '@/store/index'
 
-export function getCartList(data) {
+export function getCartList() {
   return request({
     url: '/eleme/cart/list',
     method: 'post',
-    data
+    data: {
+      userId: store.getters.id
+    }
   })
 }
 
@@ -12,7 +15,10 @@ export function addItem(data) {
   return request({
     url: '/eleme/cart/addItem',
     method: 'post',
-    data
+    data: {
+      ...data,
+      userId: store.getters.id
+    }
   })
 }
 
@@ -20,13 +26,19 @@ export function removeItem(data) {
   return request({
     url: '/eleme/cart/removeItem',
     method: 'post',
-    data
+    data: {
+      ...data,
+      userId: store.getters.id
+    }
   })
 }
 
 export function removeAll() {
   return request({
     url: '/eleme/cart/removeAll',
-    method: 'post'
+    method: 'post',
+    data: {
+      userId: store.getters.id
+    }
   })
 }
