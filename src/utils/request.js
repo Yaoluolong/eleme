@@ -48,8 +48,9 @@ service.interceptors.response.use(
   },
   error => {
     console.log(error)
-    const { msg, code } = error.response.data
-    if (code === -2) {
+    if (error.response) {
+      const { msg, code } = error.response.data
+      if (code === -2) {
       // MessageBox.confirm('token已失效，是否重新登录', '确认注销', {
       //   confirmButtonText: '重新登录',
       //   cancelButtonText: '取消',
@@ -59,14 +60,15 @@ service.interceptors.response.use(
       //     location.reload()
       //   })
       // })
-      alert(msg || 'token失效')
-    } else {
+        alert(msg || 'token失效')
+      } else {
       // Message({
       //   message: msg || '连接错误',
       //   type: 'error',
       //   duration: 5 * 1000
       // })
-      alert(msg || 'token失效')
+        alert(msg || 'token失效')
+      }
     }
     return Promise.reject(error)
   }

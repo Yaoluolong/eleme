@@ -25,6 +25,9 @@
         />
       </van-form>
     </van-dialog>
+    <van-popup v-model="paymentShow" position="bottom" :style="{ height: '40%' }">
+      <payment :price="getCartPrice" @paid="afterPay" />
+    </van-popup>
     <div class="order">
       <div class="addressDiv">
         <van-card class="address">
@@ -72,20 +75,22 @@
       </div>
     </div>
     <div>
-      <van-submit-bar :price="getCartPrice" button-text="提交订单" @submit="onSubmit" />
+      <van-submit-bar :price="getCartPrice" button-text="去支付" @submit="onSubmit" />
     </div>
   </div>
 </template>
 
 <script>
+import Payment from '@/components/Payment'
 import { Toast } from 'vant'
-
 import { settleOrder } from '@/api/order'
+
 export default {
   name: 'Order',
-  components: {},
+  components: { Payment },
   data() {
     return {
+      paymentShow: false,
       show: false,
       userName: null,
       phoneNumber: null,
@@ -145,19 +150,25 @@ export default {
         ? false : this.form.getUserAddress === '' || null
           ? false : !(this.form.getUserId === '' || null)
       if (vaild) {
-        settleOrder(this.form)
-          .then(response => {
-            Toast.success('提交成功')
-            setTimeout(() => {
-              this.$router.replace('/order')
-            }, 2000)
-          })
+        this.paymentShow = true
       } else {
         Toast.fail('请输入订单信息')
       }
     },
     onEdit() {
       this.show = true
+    },
+    afterPay() {
+      settleOrder(this.form)
+        .then(response => {
+          Toast.success('支付成功')
+          setTimeout(() => {
+            this.$router.replace('/order')
+          }, 2000)
+        })
+        .catch(error => {
+          Toast.fail('支付失败:' + error)
+        })
     }
   }
 }
