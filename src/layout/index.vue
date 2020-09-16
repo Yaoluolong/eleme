@@ -45,6 +45,12 @@ export default {
     routeName() {
       return this.$route.name
     }
+  },
+  created() {
+    if (sessionStorage.getItem('id')) {
+      this.$store.commit('user/SET_ID', JSON.parse(sessionStorage.getItem('id')))
+      console.log(this.$store.getters.id)
+    }
   }
 }
 </script>

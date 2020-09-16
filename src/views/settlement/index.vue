@@ -75,7 +75,7 @@
       </div>
     </div>
     <div>
-      <van-submit-bar :price="getCartPrice" button-text="去支付" @submit="onSubmit" />
+      <van-submit-bar :price="getCartPrice*100" button-text="去支付" @submit="onSubmit" />
     </div>
   </div>
 </template>
@@ -126,10 +126,13 @@ export default {
       return this.$store.getters.address
     }
   },
-  mounted() {
+  created() {
     this.form.userName = this.getUserName
     this.form.address = this.getUserAddress
     this.form.phoneNumber = this.getUserId
+    this.userName = this.getUserName
+    this.address = this.getUserAddress
+    this.phoneNumber = this.getUserId
   },
   methods: {
     // 弹窗关闭前调用方法
@@ -146,9 +149,10 @@ export default {
       }
     },
     onSubmit() {
-      const vaild = this.form.userName === '' || null
-        ? false : this.form.getUserAddress === '' || null
-          ? false : !(this.form.getUserId === '' || null)
+      const vaild = this.form.userName === undefined
+        ? false : this.form.getUserAddress === undefined
+          ? false : !(this.form.getUserId === undefined)
+      console.log(vaild)
       if (vaild) {
         this.paymentShow = true
       } else {

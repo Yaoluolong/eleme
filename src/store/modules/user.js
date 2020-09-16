@@ -42,6 +42,8 @@ const actions = {
         commit('SET_ID', data.userId)
         commit('SET_NAME', data.userNmae)
         commit('SET_ADDRESS', data.address)
+        sessionStorage.setItem('id', JSON.stringify(data.userId))
+
         setToken(data.token)
         resolve()
       }).catch(error => {
